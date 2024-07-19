@@ -73,7 +73,8 @@ class UserController {
             res.status(200).json({
                 status: "Updated!",
                 message: "Successfully updated user!",
-                data : result
+                data : result,
+                data_type:"users"
             });
 
         } catch (err) {
@@ -89,7 +90,8 @@ class UserController {
             res.status(200).json({
                 status: "Success!",
                 message: "Successfully fetched users!",
-                data: users
+                data: users,
+                data_type:"users"
             });
         }
         catch(err){
@@ -112,7 +114,8 @@ class UserController {
             res.status(200).json({
                 status: "Success!",
                 message: "Successfully fetched user!",
-                data: user
+                data: user,
+                data_type:"users"
             });
         } catch (err) {
             res.status(500).json({

@@ -39,7 +39,8 @@ class MerchandiseController {
             res.status(201).json({
                 status: "Success!",
                 message: "Successfully created a new merchandise!",
-                data : result
+                data : result,
+                data_type:"merchandises"
             });
         }
         catch (err) {
@@ -85,7 +86,8 @@ class MerchandiseController {
                 res.status(200).json({
                     status: "Success!",
                     message: "Successfully updated the merchandise!",
-                    data: result
+                    data: result,
+                    data_type:"merchandises"
                 });
                 
         } catch (err) {
@@ -141,7 +143,8 @@ class MerchandiseController {
             res.status(200).json({
                 status: "Success!",
                 message: "Successfully retrieved all merchandises!",
-                data: merchandises
+                data: merchandises,
+                data_type:'merchandises',
             });
         } catch (err) {
             res.status(500).json({
@@ -163,7 +166,8 @@ class MerchandiseController {
             res.status(200).json({
                 status: "Success!",
                 message: "Successfully retrieved merchandises by shop id!",
-                data: merchandises
+                data: merchandises,
+                data_type:'merchandises',
             });
         } catch (err) {
             res.status(500).json({
@@ -185,7 +189,8 @@ class MerchandiseController {
             res.status(200).json({
                 status: "Success!",
                 message: "Successfully retrieved the merchandise!",
-                data: merchandise
+                data: merchandise,
+                data_type:'merchandises',
             });
         } catch (err) {
             res.status(500).json({
@@ -207,7 +212,8 @@ class MerchandiseController {
             res.status(200).json({
                 status: "Success!",
                 message: "Successfully retrieved merchandises by name!",
-                data: merchandises
+                data: merchandises,
+                data_type:'merchandises',
             });
         } catch (err) {
             res.status(500).json({

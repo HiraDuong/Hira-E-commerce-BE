@@ -45,7 +45,8 @@ class AuthController {
                     status: "success",
                     message: "User created successfully",
                     token: token,
-                    data : response
+                    data : response,
+                    data_type: "users"
                 });
             }
         } catch (error) {

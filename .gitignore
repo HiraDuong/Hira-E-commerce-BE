@@ -22,7 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.code-workspace
 
 #enviroment
 
 *.env
+

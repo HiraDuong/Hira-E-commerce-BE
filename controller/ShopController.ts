@@ -26,6 +26,7 @@ class ShopController {
                 status: "Created!",
                 message: "Successfully created shop!",
                 data: result,
+                data_type:"shops" 
             });
         } catch (err) {
             res.status(500).json({
@@ -84,7 +85,8 @@ class ShopController {
             res.status(200).json({
                 status: "Updated!",
                 message: "Successfully updated shop!",
-                data: result
+                data: result,
+                data_type:"shops" 
             });
 
         } catch (err) {
@@ -107,7 +109,8 @@ class ShopController {
             res.status(200).json({
                 status: "Success!",
                 message: "Successfully fetched shop!",
-                data: shop
+                data: shop,
+                data_type:"shops" 
             });
         } catch (err) {
             res.status(500).json({
@@ -123,7 +126,8 @@ class ShopController {
             res.status(200).json({
                 status: "Success!",
                 message: "Successfully fetched shops!",
-                data: shops
+                data: shops,
+                data_type:"shops" 
             });
         } catch (err) {
             res.status(500).json({
@@ -139,7 +143,8 @@ class ShopController {
             res.status(200).json({
                 status: "Success!",
                 message: "Successfully fetched shops!",
-                data: shops
+                data: shops,
+                data_type:"shops" 
             });
         } catch (err) {
             res.status(500).json({
@@ -155,7 +160,8 @@ class ShopController {
             res.status(200).json({
                 status: "Success!",
                 message: "Successfully fetched shops!",
-                data: shops
+                data: shops,
+                data_type:"shops" 
             });
         } catch (err) {
             res.status(500).json({
