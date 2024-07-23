@@ -3,15 +3,14 @@ import Shop from './ShopModel';
 
 @Table({
     tableName: 'app_user',
-    timestamps:false,
+    timestamps: false,
 })
-export class AppUser extends Model{
-
+export class AppUser extends Model {
     @Column({
         type: DataType.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        field: 'user_id' as string,
+        field: 'user_id',
     })
     user_id!: number;
 
@@ -19,7 +18,7 @@ export class AppUser extends Model{
         type: DataType.STRING(50),
         allowNull: false,
         unique: true,
-        field: 'username' as string,
+        field: 'username',
     })
     username!: string;
 
@@ -27,21 +26,21 @@ export class AppUser extends Model{
         type: DataType.STRING(255),
         allowNull: false,
         unique: true,
-        field: 'user_email' as string,
+        field: 'user_email',
     })
     user_email!: string;
 
     @Column({
         type: DataType.STRING(255),
         allowNull: false,
-        field: 'user_password' as string,
+        field: 'user_password',
     })
     user_password!: string;
-    
+
     @Column({
         type: DataType.STRING(255),
         allowNull: false,
-        field: 'user_telephone' as string,
+        field: 'user_telephone',
         unique: true,
     })
     user_telephone!: string;
@@ -49,7 +48,7 @@ export class AppUser extends Model{
     @Column({
         type: DataType.STRING(255),
         allowNull: true,
-        field: 'user_avt' as string,
+        field: 'user_avt',
     })
     user_avt!: string;
 
@@ -57,7 +56,7 @@ export class AppUser extends Model{
         type: DataType.STRING(20),
         allowNull: false,
         defaultValue: 'normal',
-        field: 'user_role' as string,
+        field: 'user_role',
     })
     user_role!: string;
 

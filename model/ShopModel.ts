@@ -1,4 +1,12 @@
-import { Model, Table, Column, DataType, ForeignKey, BelongsTo, HasMany } from 'sequelize-typescript';
+import {
+    Model,
+    Table,
+    Column,
+    DataType,
+    ForeignKey,
+    BelongsTo,
+    HasMany,
+} from 'sequelize-typescript';
 import { AppUser } from './UserModel';
 import Merchandise from './MerchandiseModel';
 
@@ -61,7 +69,7 @@ export class Shop extends Model {
     @BelongsTo(() => AppUser, 'user_id')
     user!: AppUser;
     @HasMany(() => Merchandise)
-    merchandises!: Merchandise[];
+    Merchandises!: Merchandise[];
 }
 
 export default Shop;

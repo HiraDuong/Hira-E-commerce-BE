@@ -1,5 +1,5 @@
-interface IRouter{
-    routes():void
+interface IRouter {
+    routes(): void;
 }
 
-export default IRouter
+export default IRouter;

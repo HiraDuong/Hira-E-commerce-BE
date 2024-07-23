@@ -1,4 +1,3 @@
-
 import BaseRoutes from './base/BaseRouter';
 class TestRoutes extends BaseRoutes {
     routes(): void {

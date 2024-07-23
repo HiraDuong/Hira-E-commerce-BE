@@ -32,7 +32,7 @@ export class ShopRepo implements IShopRepo {
     async findByUserId(user_id: string): Promise<Shop[]> {
         try {
             return await Shop.findAll({
-                where: { user_id: user_id }
+                where: { user_id: user_id },
             });
         } catch (error) {
             console.error('Error finding shops by user ID:', error);
@@ -43,9 +43,11 @@ export class ShopRepo implements IShopRepo {
     async findByShopName(name: string): Promise<Shop[]> {
         try {
             return await Shop.findAll({
-                where: { shop_name: {
-                    [Op.iLike]: `%${name}%`
-                }}
+                where: {
+                    shop_name: {
+                        [Op.iLike]: `%${name}%`,
+                    },
+                },
             });
         } catch (error) {
             console.error('Error finding shops by name:', error);
@@ -55,16 +57,14 @@ export class ShopRepo implements IShopRepo {
 
     async save(shop: Shop): Promise<Shop> {
         try {
-            return await Shop.create(
-                {
-                    user_id: shop.user_id,
-                    shop_name: shop.shop_name,
-                    shop_description: shop.shop_description,
-                    shop_address: shop.shop_address,
-                    shop_avt: shop.shop_avt,
-                    shop_start_at: shop.shop_start_at
-                }
-            );
+            return await Shop.create({
+                user_id: shop.user_id,
+                shop_name: shop.shop_name,
+                shop_description: shop.shop_description,
+                shop_address: shop.shop_address,
+                shop_avt: shop.shop_avt,
+                shop_start_at: shop.shop_start_at,
+            });
         } catch (error) {
             console.error('Error creating shop:', error);
             throw error;

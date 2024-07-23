@@ -64,12 +64,16 @@ export const refreshToken = (token: string): string => {
 };
 
 // Middleware để xác thực token trước khi xử lý yêu cầu
-export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
+export const authenticateToken = (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) => {
     const token = req.header('Authorization')?.replace('Bearer ', '');
     if (!token) {
         return res.sendStatus(401).json({
-            status: "error",
-            message: "Token is required"
+            status: 'error',
+            message: 'Token is required',
         }); // Unauthorized
     }
 
@@ -81,17 +85,21 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     } catch (error) {
         console.error('Error verifying token:', error);
         return res.sendStatus(403).json({
-            status: "error",
-            message: "Invalid token, please log in again"
+            status: 'error',
+            message: 'Invalid token, please log in again',
         }); // Forbidden
     }
 };
-export const authenticateTokenAdmin = (req: Request, res: Response, next: NextFunction) => {
+export const authenticateTokenAdmin = (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) => {
     const token = req.header('Authorization')?.replace('Bearer ', '');
     if (!token) {
         return res.sendStatus(401).json({
-            status: "error",
-            message: "Token is required"
+            status: 'error',
+            message: 'Token is required',
         }); // Unauthorized
     }
 
@@ -99,10 +107,10 @@ export const authenticateTokenAdmin = (req: Request, res: Response, next: NextFu
         // Xác minh tính hợp lệ của token
         const decodedToken = verifyToken(token);
         (req as CustomRequest).token = decodedToken;
-        if(decodedToken.user_role !== 'admin'){
+        if (decodedToken.user_role !== 'admin') {
             return res.sendStatus(403).json({
-                status: "error",
-                message: "Only admin can access this route"
+                status: 'error',
+                message: 'Only admin can access this route',
             }); // Forbidden
         }
         next();

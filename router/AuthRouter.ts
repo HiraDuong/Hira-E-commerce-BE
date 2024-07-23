@@ -1,5 +1,5 @@
-import BaseRoutes from "./base/BaseRouter"
-import AuthController from "../controller/AuthController"
+import BaseRoutes from './base/BaseRouter';
+import AuthController from '../controller/AuthController';
 class AuthRoutes extends BaseRoutes {
     routes(): void {
         this.router.post('/login', AuthController.login);
