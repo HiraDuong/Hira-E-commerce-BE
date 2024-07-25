@@ -5,6 +5,9 @@ import Shop from '../model/ShopModel';
 import Merchandise from '../model/MerchandiseModel';
 import Tag from '../model/TagModel';
 import MerchandiseTag from '../model/MerchandiseTagModel';
+import Cart from '../model/CartModel';
+import Bill from '../model/BillModel';
+import UserOrder from '../model/OrderModel';
 dotenv.config();
 
 class Database {
@@ -28,7 +31,16 @@ class Database {
             host: this.POSTGRES_HOST,
             port: this.POSTGRES_PORT,
             dialect: 'postgres',
-            models: [AppUser, Shop, Merchandise, Tag, MerchandiseTag],
+            models: [
+                AppUser,
+                Shop,
+                Merchandise,
+                Tag,
+                Bill,
+                UserOrder,
+                MerchandiseTag,
+                Cart,
+            ],
         });
 
         await this.sequelize

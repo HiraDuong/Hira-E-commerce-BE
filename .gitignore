@@ -27,5 +27,6 @@ dist-ssr
 #enviroment
 
 *.env
+# prettier
 *.prettierignore
 *.prettierrc

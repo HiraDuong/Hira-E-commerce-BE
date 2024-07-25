@@ -3,7 +3,6 @@ import { CustomRequest } from '../types/types';
 import { MerchandiseRepo } from '../repository/MerchandiseRepo';
 import Merchandise from '../model/MerchandiseModel';
 import ShopRepo from '../repository/ShopRepo';
-import Shop from '../model/ShopModel';
 
 class MerchandiseController {
     // create a new merchandise
@@ -60,7 +59,7 @@ class MerchandiseController {
         console.log(req.body.shop_id);
         try {
             // find user_id by shop_id
-            const shop = await new Shop(req.body.shop_id);
+            const shop = await new ShopRepo().findById(req.body.shop_id);
             if (!shop) {
                 return res.status(404).json({
                     status: 'Not Found!',

@@ -1,5 +1,14 @@
-import { Model, Table, Column, DataType, HasMany } from 'sequelize-typescript';
+import {
+    Model,
+    Table,
+    Column,
+    DataType,
+    HasMany,
+    BelongsToMany,
+} from 'sequelize-typescript';
 import Shop from './ShopModel';
+import Cart from './CartModel';
+import Merchandise from './MerchandiseModel';
 
 @Table({
     tableName: 'app_user',
@@ -61,7 +70,13 @@ export class AppUser extends Model {
     user_role!: string;
 
     @HasMany(() => Shop)
-    shops!: Shop[];
+    Shops!: Shop[];
+
+    @HasMany(() => Cart)
+    Carts!: Cart[];
+
+    @BelongsToMany(() => Merchandise, () => Cart)
+    Merchandise!: Merchandise[];
 }
 
 export default AppUser;

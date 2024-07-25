@@ -16,7 +16,7 @@ interface IMerchandiseRepo {
 export class MerchandiseRepo implements IMerchandiseRepo {
     async save(merchandise: Merchandise): Promise<Merchandise> {
         try {
-            return Merchandise.create({
+            return await Merchandise.create({
                 merchandise_name: merchandise.merchandise_name,
                 merchandise_price: merchandise.merchandise_price,
                 merchandise_description: merchandise.merchandise_description,
@@ -32,7 +32,7 @@ export class MerchandiseRepo implements IMerchandiseRepo {
     }
     async update(merchandise: Merchandise): Promise<Merchandise> {
         try {
-            return merchandise.save();
+            return await merchandise.save();
         } catch (error) {
             console.error('Error updating merchandise:', error);
             throw error;

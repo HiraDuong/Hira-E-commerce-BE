@@ -5,7 +5,7 @@ import { CustomRequest } from '../types/types';
 class TagController {
     async createTag(req: Request, res: Response) {
         // authenticate admin
-        if ((req as CustomRequest).token.user_role.toString() !== 'admin') {
+        if ((req as CustomRequest).token.user_role !== 'admin') {
             return res.status(403).json({
                 status: 'Forbidden!',
                 message: 'You are not authorized to create a tag!',

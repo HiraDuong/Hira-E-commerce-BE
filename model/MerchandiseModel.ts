@@ -11,6 +11,8 @@ import {
 import Shop from './ShopModel';
 import Tag from './TagModel';
 import MerchandiseTag from './MerchandiseTagModel';
+import Cart from './CartModel';
+import AppUser from './UserModel';
 
 @Table({
     tableName: 'merchandise',
@@ -81,6 +83,12 @@ export class Merchandise extends Model {
 
     @BelongsToMany(() => Tag, () => MerchandiseTag)
     Tags!: Tag[];
+
+    @HasMany(() => Cart)
+    Carts!: Cart[];
+
+    @BelongsToMany(() => AppUser, () => Cart)
+    Users!: AppUser[];
 }
 
 export default Merchandise;
