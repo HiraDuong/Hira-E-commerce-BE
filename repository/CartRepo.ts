@@ -74,7 +74,6 @@ export class CartRepo implements ICartRepo {
                     {
                         model: Merchandise,
                         attributes: [
-                            'merchandise_id',
                             'merchandise_name',
                             'merchandise_price',
                             'merchandise_img',
@@ -103,7 +102,6 @@ export class CartRepo implements ICartRepo {
                     {
                         model: Merchandise,
                         attributes: [
-                            'merchandise_id',
                             'merchandise_name',
                             'merchandise_price',
                             'merchandise_img',
@@ -124,7 +122,6 @@ export class CartRepo implements ICartRepo {
                     {
                         model: Merchandise,
                         attributes: [
-                            'merchandise_id',
                             'merchandise_name',
                             'merchandise_price',
                             'merchandise_img',

@@ -44,7 +44,7 @@ class ShopController {
         if (
             (req as CustomRequest).token.user_id.toString() !==
                 req.body.user_id.toString() &&
-            (req as CustomRequest).token.user_role.toString() !== 'admin'
+            (req as CustomRequest).token.user_role !== 'admin'
         ) {
             return res.status(403).json({
                 status: 'Forbidden!',
@@ -78,7 +78,7 @@ class ShopController {
             // check authorization
             if (
                 (req as CustomRequest).token.user_id.toString() !==
-                updated_shop?.user_id.toString()
+                updated_shop.user_id.toString()
             ) {
                 return res.status(403).json({
                     status: 'Forbidden!',
@@ -133,6 +133,15 @@ class ShopController {
     }
     // get all shops by user id
     async getAllShopsByUserId(req: Request, res: Response) {
+        if (
+            (req as CustomRequest).token.user_id.toString() !== req.params.user_id.toString() &&
+            (req as CustomRequest).token.user_role !== 'admin'
+        ) {
+            return res.status(403).json({
+                status: 'Forbidden!',
+                message: 'You are not allowed to view shops for another user!',
+            });
+        }
         try {
             const shops = await new ShopRepo().findByUserId(req.params.user_id);
             res.status(200).json({

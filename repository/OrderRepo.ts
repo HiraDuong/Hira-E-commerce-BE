@@ -53,7 +53,24 @@ export class OrderRepo implements IOrderRepo {
     async findById(id: string): Promise<UserOrder | null> {
         try {
             // find order by id
-            return await UserOrder.findByPk(id);
+            return await UserOrder.findByPk(id, {
+                include: [
+                    {
+                        model: Merchandise,
+                        attributes: [
+                            'merchandise_name',
+                            'merchandise_price',
+                            'merchandise_img',
+                        ],
+                        include: [
+                            {
+                                model: Shop,
+                                attributes: ['shop_name'],
+                            },
+                        ],
+                    },
+                ],
+            });
         } catch (error) {
             console.error('Error finding order by ID:', error);
             throw error;
@@ -62,7 +79,24 @@ export class OrderRepo implements IOrderRepo {
     async findAll(): Promise<UserOrder[]> {
         try {
             // find all orders
-            return await UserOrder.findAll();
+            return await UserOrder.findAll({
+                include: [
+                    {
+                        model: Merchandise,
+                        attributes: [
+                            'merchandise_name',
+                            'merchandise_price',
+                            'merchandise_img',
+                        ],
+                        include: [
+                            {
+                                model: Shop,
+                                attributes: ['shop_name'],
+                            },
+                        ],
+                    },
+                ],
+            });
         } catch (error) {
             console.error('Error finding all orders:', error);
             throw error;
@@ -71,7 +105,26 @@ export class OrderRepo implements IOrderRepo {
     async findByUserId(userId: string): Promise<UserOrder[]> {
         try {
             // find orders by user id
-            return await UserOrder.findAll({ where: { user_id: userId } });
+            return await UserOrder.findAll({
+                where: { user_id: userId },
+
+                include: [
+                    {
+                        model: Merchandise,
+                        attributes: [
+                            'merchandise_name',
+                            'merchandise_price',
+                            'merchandise_img',
+                        ],
+                        include: [
+                            {
+                                model: Shop,
+                                attributes: ['shop_name'],
+                            },
+                        ],
+                    },
+                ],
+            });
         } catch (error) {
             console.error('Error finding orders by user ID:', error);
             throw error;
@@ -85,6 +138,11 @@ export class OrderRepo implements IOrderRepo {
                     {
                         model: Merchandise,
                         where: { shop_id: shopId },
+                        attributes: [
+                            'merchandise_name',
+                            'merchandise_price',
+                            'merchandise_img',
+                        ],
                         include: [
                             {
                                 model: Shop,
@@ -104,6 +162,22 @@ export class OrderRepo implements IOrderRepo {
             // find orders by merchandise id
             return await UserOrder.findAll({
                 where: { merchandise_id: merchandiseId },
+                include: [
+                    {
+                        model: Merchandise,
+                        attributes: [
+                            'merchandise_name',
+                            'merchandise_price',
+                            'merchandise_img',
+                        ],
+                        include: [
+                            {
+                                model: Shop,
+                                attributes: ['shop_name'],
+                            },
+                        ],
+                    },
+                ],
             });
         } catch (error) {
             console.error('Error finding orders by merchandise ID:', error);
@@ -114,7 +188,27 @@ export class OrderRepo implements IOrderRepo {
     async findByBillId(billId: string): Promise<UserOrder[]> {
         try {
             // find orders by bill id
-            return await UserOrder.findAll({ where: { bill_id: billId } });
+            return await UserOrder.findAll({
+                where: { bill_id: billId },
+
+                include: [
+                    {
+                        model: Merchandise,
+                        attributes: [
+                            'merchandise_name',
+                            'merchandise_price',
+                            'merchandise_img',
+                            'merchandise_description',
+                        ],
+                        include: [
+                            {
+                                model: Shop,
+                                attributes: ['shop_name'],
+                            },
+                        ],
+                    },
+                ],
+            });
         } catch (error) {
             console.error('Error finding orders by bill ID:', error);
             throw error;

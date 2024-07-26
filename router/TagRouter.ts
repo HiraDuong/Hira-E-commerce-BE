@@ -7,12 +7,8 @@ import BaseRoutes from './base/BaseRouter';
 
 class TagRoutes extends BaseRoutes {
     public routes(): void {
-        this.router.get('/all', authenticateToken, TagController.getAllTags);
-        this.router.get(
-            '/name/:name',
-            authenticateToken,
-            TagController.getTagByName,
-        );
+        this.router.get('/all', TagController.getAllTags);
+        this.router.get('/name/:name', TagController.getTagByName);
         this.router.post(
             '/create',
             authenticateTokenAdmin,

@@ -27,7 +27,7 @@ class UserController {
     async deleteUser(req: Request, res: Response) {
         // allow admin delete account
         if (
-            (req as CustomRequest).token.user_id.toString() !== req.params.id &&
+            (req as CustomRequest).token.user_id.toString() !== req.params.id.toString() &&
             (req as CustomRequest).token.user_role !== 'admin'
         ) {
             return res.status(403).json({

@@ -74,9 +74,19 @@ class CartController {
                     message: 'Cart not found!',
                 });
             }
+            if (
+                (req as CustomRequest).token.user_id.toString() !==
+                    cart.user_id.toString() &&
+                (req as CustomRequest).token.user_role !== 'admin'
+            ) {
+                return res.status(403).json({
+                    status: 'Forbidden!',
+                    message: 'You are not authorized to delete your own cart!',
+                });
+            }
             // authen that is true user
             if (
-                (req as CustomRequest).token.user_id !==
+                (req as CustomRequest).token.user_id.toString() !==
                     cart.user_id.toString() &&
                 (req as CustomRequest).token.user_role !== 'admin'
             ) {
@@ -100,13 +110,6 @@ class CartController {
     }
 
     async getAllCarts(req: Request, res: Response) {
-        // admin role
-        if ((req as CustomRequest).token.user_role !== 'admin') {
-            return res.status(403).json({
-                status: 'Forbidden!',
-                message: 'You are not authorized to get all carts!',
-            });
-        }
         try {
             const carts = await new CartRepo().findAll();
             res.status(200).json({
@@ -131,17 +134,6 @@ class CartController {
                     message: 'Cart not found!',
                 });
             }
-            // authen that is true user
-            if (
-                (req as CustomRequest).token.user_id !==
-                    cart.user_id.toString() &&
-                (req as CustomRequest).token.user_role !== 'admin'
-            ) {
-                return res.status(403).json({
-                    status: 'Forbidden!',
-                    message: 'You are not authorized to get this cart!',
-                });
-            }
             res.status(200).json({
                 status: 'Success!',
                 message: 'Cart fetched successfully!',
@@ -158,7 +150,8 @@ class CartController {
     async getCartByUserId(req: Request, res: Response) {
         try {
             if (
-                (req as CustomRequest).token.user_id !== req.params.userId &&
+                (req as CustomRequest).token.user_id.toString() !==
+                    req.params.userId.toString() &&
                 (req as CustomRequest).token.user_role !== 'admin'
             ) {
                 return res.status(403).json({
@@ -183,13 +176,6 @@ class CartController {
 
     async getCartByMerchandiseId(req: Request, res: Response) {
         try {
-            // authen admin
-            if ((req as CustomRequest).token.user_role !== 'admin') {
-                return res.status(403).json({
-                    status: 'Forbidden!',
-                    message: 'You are not authorized to get this cart!',
-                });
-            }
             const carts = await new CartRepo().findByMerchandiseId(
                 req.params.merchandiseId,
             );

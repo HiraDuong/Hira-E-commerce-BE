@@ -55,7 +55,7 @@ export class MerchandiseRepo implements IMerchandiseRepo {
                 include: [
                     {
                         model: Shop,
-                        attributes: ['shop_id', 'shop_name'],
+                        attributes: ['shop_name'],
                     },
                     {
                         model: Tag,
@@ -82,7 +82,7 @@ export class MerchandiseRepo implements IMerchandiseRepo {
                 include: [
                     {
                         model: Shop,
-                        attributes: ['shop_id', 'shop_name'],
+                        attributes: ['shop_name'],
                     },
                     {
                         model: Tag,
@@ -103,7 +103,7 @@ export class MerchandiseRepo implements IMerchandiseRepo {
         try {
             return await Merchandise.findAll({
                 include: [
-                    { model: Shop, attributes: ['shop_id', 'shop_name'] },
+                    { model: Shop, attributes: ['shop_name'] },
                     {
                         model: Tag,
                         through: {
@@ -142,7 +142,10 @@ export class MerchandiseRepo implements IMerchandiseRepo {
     }
     findByTagId(id: string): Promise<Merchandise[]> {
         return Merchandise.findAll({
-            include: [{ model: Tag, where: { tag_id: id } }],
+            include: [
+                { model: Tag, where: { tag_id: id } },
+                { include: [{ model: Shop, attributes: ['shop_name'] }] },
+            ],
         });
     }
 }

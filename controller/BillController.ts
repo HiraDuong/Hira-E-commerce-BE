@@ -7,7 +7,11 @@ class BillController {
     // create bill
     async createBill(req: Request, res: Response) {
         // authenticate
-        if ((req as CustomRequest).token.user_id !== req.body.user_id) {
+        if (
+            (req as CustomRequest).token.user_id.toString() !==
+                req.body.user_id.toString() &&
+            (req as CustomRequest).token.user_role !== 'admin'
+        ) {
             return res.status(403).json({
                 status: 'Forbidden!',
                 message: 'You are not authorized to create a bill!',
@@ -144,6 +148,29 @@ class BillController {
             return res.status(500).json({
                 status: 'Error!',
                 message: 'An error occurred while fetching the bills!',
+            });
+        }
+    }
+    async getBillById(req: Request, res: Response) {
+        try {
+            const bill = await new BillRepo().findById(req.params.id);
+            if (!bill) {
+                return res.status(404).json({
+                    status: 'Error!',
+                    message: 'Bill not found!',
+                });
+            }
+
+            return res.status(200).json({
+                status: 'Success!',
+                message: 'Successfully fetched bill by id!',
+                data: bill,
+            });
+        } catch (error) {
+            console.error('Error fetching bill:', error);
+            return res.status(500).json({
+                status: 'Error!',
+                message: 'An error occurred while fetching the bill!',
             });
         }
     }

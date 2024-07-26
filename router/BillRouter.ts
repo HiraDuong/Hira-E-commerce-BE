@@ -32,6 +32,11 @@ class BillRoutes extends BaseRoutes {
             authenticateToken,
             BillController.getBillByUserId,
         );
+        this.router.get(
+            '/id/:id',
+            authenticateTokenAdmin,
+            BillController.getBillById,
+        );
     }
 }
 

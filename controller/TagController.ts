@@ -4,13 +4,6 @@ import TagRepo from '../repository/TagRepo';
 import { CustomRequest } from '../types/types';
 class TagController {
     async createTag(req: Request, res: Response) {
-        // authenticate admin
-        if ((req as CustomRequest).token.user_role !== 'admin') {
-            return res.status(403).json({
-                status: 'Forbidden!',
-                message: 'You are not authorized to create a tag!',
-            });
-        }
         try {
             const tag = await new TagRepo().save(req.body);
             res.status(201).json({
@@ -27,13 +20,7 @@ class TagController {
         }
     }
     async deleteTag(req: Request, res: Response) {
-        // authenticate admin
-        if ((req as CustomRequest).token.user_role.toString() !== 'admin') {
-            return res.status(403).json({
-                status: 'Forbidden!',
-                message: 'You are not authorized to delete a tag!',
-            });
-        }
+
         try {
             await new TagRepo().delete(req.params.id);
             res.status(200).json({

@@ -14,7 +14,7 @@ class ShopRoutes extends BaseRoutes {
         // get shops by user id
         this.router.get(
             '/user/:user_id',
-            authenticateTokenAdmin,
+            authenticateToken,
             ShopController.getAllShopsByUserId,
         );
         // get shops by shop name

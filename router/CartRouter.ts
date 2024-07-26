@@ -19,12 +19,12 @@ class CartRouter extends BaseRoutes {
         );
         this.router.get(
             '/id/:id',
-            authenticateToken,
+            authenticateTokenAdmin,
             CartController.getCartById,
         );
         this.router.get(
             '/merchandise/:merchandiseId',
-            authenticateToken,
+            authenticateTokenAdmin,
             CartController.getCartByMerchandiseId,
         );
         this.router.post(
@@ -39,7 +39,7 @@ class CartRouter extends BaseRoutes {
         );
         this.router.delete(
             '/delete/:id',
-            authenticateTokenAdmin,
+            authenticateToken,
             CartController.deleteCart,
         );
     }

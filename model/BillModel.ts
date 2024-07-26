@@ -5,8 +5,10 @@ import {
     DataType,
     ForeignKey,
     BelongsTo,
+    HasMany,
 } from 'sequelize-typescript';
 import AppUser from './UserModel';
+import UserOrder from './OrderModel';
 
 @Table({
     tableName: 'bill',
@@ -68,6 +70,9 @@ export class Bill extends Model {
 
     @BelongsTo(() => AppUser)
     User!: AppUser;
+
+    @HasMany(() => UserOrder, { foreignKey: 'bill_id' })
+    UserOrders!: UserOrder[];
 }
 
 export default Bill;

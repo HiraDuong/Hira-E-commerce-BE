@@ -7,7 +7,8 @@ class OrderController {
     async createOrder(req: Request, res: Response) {
         // authorization
         if (
-            (req as CustomRequest).token.user_id !== req.body.user_id &&
+            (req as CustomRequest).token.user_id.toString() !==
+                req.body.user_id.toString() &&
             (req as CustomRequest).token.user_role !== 'admin'
         ) {
             return res.status(403).json({
@@ -42,7 +43,7 @@ class OrderController {
             }
             // authorization
             if (
-                (req as CustomRequest).token.user_id !==
+                (req as CustomRequest).token.user_id.toString() !==
                     order.user_id.toString() &&
                 (req as CustomRequest).token.user_role !== 'admin'
             ) {
@@ -80,7 +81,7 @@ class OrderController {
             }
             // authorization
             if (
-                (req as CustomRequest).token.user_id !==
+                (req as CustomRequest).token.user_id.toString() !==
                     order.user_id.toString() &&
                 (req as CustomRequest).token.user_role !== 'admin'
             ) {
@@ -148,7 +149,7 @@ class OrderController {
         // authorization
         if (
             (req as CustomRequest).token.user_id.toString() !==
-                req.params.userId &&
+                req.params.userId.toString() &&
             (req as CustomRequest).token.user_role !== 'admin'
         ) {
             return res.status(403).json({
